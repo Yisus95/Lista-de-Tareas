@@ -30,7 +30,7 @@ Permite a los usuarios registrarse, iniciar sesión y administrar sus tareas de 
 
 ## ⚙️ Instalación y uso
 
-1. Clona el repositorio:
+1.Clona el repositorio:
    ```bash
    git clone https://github.com/Yisus95/Lista-de-Tareas.git
    cd Lista-de-Tareas/src/proyecto
