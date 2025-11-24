@@ -27,7 +27,6 @@ Permite a los usuarios registrarse, iniciar sesión y administrar sus tareas de 
 
 ---
 
-
 ## ⚙️ Instalación y uso
 
 1.Clona el repositorio:
