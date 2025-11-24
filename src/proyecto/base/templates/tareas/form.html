@@ -1,0 +1,40 @@
+{% extends 'base/principal.html' %}
+{% block content %}
+<div class="barra-superior">
+  <a href="{% url 'tareas' %}" style="margin-left:12px;">&#x21E0; Volver</a>
+</div>
+
+<div class="cuerpo-tarjeta">
+  <form method="POST" action="">
+    {% csrf_token %}
+
+    <!-- Campo título -->
+    <label for="{{ form.titulo.id_for_label }}">{{ form.titulo.label }}</label>
+    {{ form.titulo }}
+    {% if form.titulo.errors %}
+      <div role="alert" style="color:#570b0b;">{{ form.titulo.errors|join:", " }}</div>
+    {% endif %}
+
+    <!-- Campo descripción -->
+    <label for="{{ form.descripcion.id_for_label }}">{{ form.descripcion.label }}</label>
+    {{ form.descripcion }}
+    {% if form.descripcion.errors %}
+      <div role="alert" style="color:#570b0b;">{{ form.descripcion.errors|join:", " }}</div>
+    {% endif %}
+
+    <!-- Campo completo (alineado horizontalmente con estilo clásico) -->
+    <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
+      <span style="font-weight: bold;">{{ form.completo.label }}</span>
+      {{ form.completo }}
+    </div>
+    {% if form.completo.errors %}
+      <div role="alert" style="color:#570b0b;">{{ form.completo.errors|join:", " }}</div>
+    {% endif %}
+
+    <!-- Botón guardar -->
+    <div style="margin-top: 20px;">
+      <input class="boton" type="submit" value="Guardar">
+    </div>
+  </form>
+</div>
+{% endblock %}

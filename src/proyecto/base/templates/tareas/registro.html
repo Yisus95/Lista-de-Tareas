@@ -1,0 +1,39 @@
+{% extends 'base/principal.html' %}
+{% block content %}
+<div class="barra-superior">
+  <h1 style="margin-left:12px;">Registrarse</h1>
+</div>
+
+<div class="cuerpo-tarjeta">
+  {% if form.non_field_errors %}
+    <div role="alert" style="color:#570b0b; margin-bottom:10px;">
+      {{ form.non_field_errors }}
+    </div>
+  {% endif %}
+
+  <form method="POST" action="">
+    {% csrf_token %}
+    <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+    {{ form.username }}
+    {% if form.username.errors %}
+      <div role="alert" style="color:#570b0b;">{{ form.username.errors|join:", " }}</div>
+    {% endif %}
+
+    <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+    {{ form.password1 }}
+    {% if form.password1.errors %}
+      <div role="alert" style="color:#570b0b;">{{ form.password1.errors|join:", " }}</div>
+    {% endif %}
+
+    <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+    {{ form.password2 }}
+    {% if form.password2.errors %}
+      <div role="alert" style="color:#570b0b;">{{ form.password2.errors|join:", " }}</div>
+    {% endif %}
+
+    <input class="boton" type="submit" value="Registrar" style="margin-top:10px;">
+  </form>
+
+  <p>¿Ya tienes una cuenta? <a href="{% url 'login' %}">Ingresa</a></p>
+</div>
+{% endblock %}
