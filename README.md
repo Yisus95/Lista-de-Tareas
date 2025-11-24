@@ -34,29 +34,29 @@ Permite a los usuarios registrarse, iniciar sesión y administrar sus tareas de 
    ```bash
    git clone https://github.com/Yisus95/Lista-de-Tareas.git
    cd Lista-de-Tareas/src/proyecto
-   
+   ```
 2.Crea un entorno virtual:
    ```bash
    python -m venv venv
    source venv/bin/activate   # Linux/Mac
    venv\Scripts\activate      # Windows
-
+   ```
 3.Instala dependencias:
    ```bash
    pip install -r requirements.txt
-
+   ```
 4.Ejecuta migraciones:
    ```bash
    Python manage.py runserver
-
+   ```
 5.Inicia el servidor:
    ```bash
    http://127.0.0.1:8000
-
+   ```
 6.Abre en el navegador:
    ```bash
    http://127.0.0.1:8000
-
+   ```
 ## 📋 Funcionalidades
 
 - Registro e inicio de sesión de usuarios
