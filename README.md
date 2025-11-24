@@ -36,21 +36,26 @@ Permite a los usuarios registrarse, iniciar sesión y administrar sus tareas de 
    cd Lista-de-Tareas/src/proyecto
    
 2.Crea un entorno virtual:
-python -m venv venv
-source venv/bin/activate   # Linux/Mac
-venv\Scripts\activate      # Windows
+   ```bash
+   python -m venv venv
+   source venv/bin/activate   # Linux/Mac
+   venv\Scripts\activate      # Windows
 
 3.Instala dependencias:
-pip install -r requirements.txt
+   ```bash
+   pip install -r requirements.txt
 
 4.Ejecuta migraciones:
-python manage.py runserver
+   ```bash
+   Python manage.py runserver
 
 5.Inicia el servidor:
-http://127.0.0.1:8000
+   ```bash
+   http://127.0.0.1:8000
 
 6.Abre en el navegador:
-http://127.0.0.1:8000
+   ```bash
+   http://127.0.0.1:8000
 
 ## 📋 Funcionalidades
 
