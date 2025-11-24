@@ -57,6 +57,7 @@ Permite a los usuarios registrarse, iniciar sesión y administrar sus tareas de 
    ```bash
    http://127.0.0.1:8000
    ```
+
 ## 📋 Funcionalidades
 
 - Registro e inicio de sesión de usuarios
