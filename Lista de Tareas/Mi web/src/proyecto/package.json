@@ -1,0 +1,13 @@
+{
+  "name": "lista-de-tareas",
+  "version": "1.0.0",
+  "description": "Aplicación de lista de tareas - proyecto demostración",
+  "main": "src/js/app.js",
+  "scripts": {
+    "lint": "eslint . --ext .js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "jest"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,60 @@
+{% extends 'base/principal.html ' %}
+
+{% block content %}
+
+<div class="barra-superior">
+    <div>
+        <h1>Hola {{request.user|title}}</h1>
+        <h3 style="margin:0">Tienes <i>{{count}}</i> tarea{{count|pluralize}} incompleta{{count|pluralize}}</h3>
+    </div>
+    {% if request.user.is_authenticated %}
+
+    <p>{{ request.user }}</p>
+    <form method="post" action="{% url 'logout' %}" style="display:inline;">
+        {% csrf_token %}
+        <div style="text-align: right; margin-top: 85px;">
+            <button type="submit" style="background:none;border:none;padding:0;color:rgb(255, 255, 255);text-decoration:none;cursor:pointer;font-family:'Red Hat Display', sans-serif;font-size: 15px;">
+            Cerrar Sesión
+        </button>
+        </div>
+    </form>
+    {% else %}
+    <a href="{% url 'login' %}">Iniciar Sesión</a>
+{% endif %}
+</div>
+<h1>Lista de Pendientes{{ciudad}}</h1>
+<div id="envoltorio-agregar-buscar">
+  <section class="seccion2">
+    <form method="GET" action="">
+      <input type="text" name="buscar" placeholder="Buscar Tarea" value="{{ request.GET.buscar }}">
+      <input class="boton" type="submit" value="Buscar">
+    </form>
+    <a id="enlace-agregar" href="{% url 'crear-tarea' %}">&#xFF0B;</a>
+  </section>
+</div>
+
+
+
+<div class="envoltorio-items-tarea">
+  {% for tarea in tareas %}
+    <div class="envoltorio-tarea {% if tarea.completo %}completada{% endif %}">
+      <span class="titulo-tarea">
+        {% if tarea.completo %}
+        <div class="icono-tarea-completa"></div>
+          <s><a href="{% url 'editar-tarea' tarea.id %}">{{ tarea }}</a></s>
+        {% else %}
+        <div class="icono-tarea-incompleta"></div>
+          <a href="{% url 'editar-tarea' tarea.id %}">{{ tarea }}</a>
+        {% endif %}
+      </span>
+      <a class="enlace-eliminar" href="{% url 'eliminar-tarea' tarea.id %}">×</a>
+    </div>
+  {% empty %}
+    <h3>No hay tareas pendientes.</h3>
+  {% endfor %}
+</div>
+
+
+{% endblock %}
+</div>
+
