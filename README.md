@@ -1,9 +1,107 @@
-# Lista de Tareas 📝
+# Lista de Tareas
 
-Aplicación web desarrollada con **Django** para gestionar tareas pendientes.  
-Permite a los usuarios registrarse, iniciar sesión y administrar sus tareas de forma sencilla: crear, editar, marcar como completas y eliminarlas.
+![CI](https://github.com/Yisus95/Lista-de-Tareas/actions/workflows/test.yml/badge.svg) ![pytest](https://img.shields.io/badge/tests-pytest-brightgreen) ![style: black](https://img.shields.io/badge/format-black-000000)
 
----
+Pequeña aplicación Django para gestionar tareas (crear, editar, listar, marcar completadas y eliminar). Incluye notificaciones tipo "flash" para feedback al usuario — ahora también muestra un flash al eliminar una tarea. Este repositorio incluye tests (pytest), formateo (black) y linters (flake8/isort).
+
+## Capturas
+Antes / Después (coloca las imágenes en `assets/screenshots/`):
+- Antes: `assets/screenshots/before.png`  
+  ![before](assets/screenshots/before.png)
+- Después (flash al eliminar): `assets/screenshots/after.png`  
+  ![after](assets/screenshots/after.png)
+
+> Si no ves las imágenes, súbelas a `assets/screenshots/` y asegúrate de que están en el repo.
+
+## Características
+- CRUD de tareas (crear, listar, editar, borrar).
+- Búsqueda por título.
+- Marcar como completada.
+- Confirmación de eliminación y mensaje flash al borrar.
+- Mensajes flash estilizados y auto-ocultado (CSS + JS).
+- Protección: las vistas CRUD filtran por usuario (no puedes tocar tareas ajenas).
+
+## Quick start (local, lo mínimo)
+```bash
+git clone https://github.com/Yisus95/Lista-de-Tareas.git
+cd Lista-de-Tareas/src/proyecto
+
+python -m venv .venv
+# PowerShell:
+.\.venv\Scripts\Activate.ps1
+# macOS / Linux:
+source .venv/bin/activate
+
+pip install -r requirements.txt
+
+# migraciones
+python manage.py migrate
+
+# arrancar servidor
+python manage.py runserver
+```
+Visitar: http://localhost:8000
+
+## Cómo probar el flash al borrar (rápido)
+1. Inicia sesión con un usuario.
+2. Crea una tarea (si no hay).
+3. Ve a la lista, elimina una tarea y confirma.
+4. Deberías ver: `¡Tarea «<titulo>» eliminada correctamente!` en la parte superior.
+
+## Tests / Lint / Format
+- Tests: pytest
+- Formateo: black
+- Lint: flake8, isort
+
+Ejecutar localmente:
+```bash
+# tests
+pytest -q
+
+# format check
+black --check .
+
+# lint
+flake8
+isort --check-only .
+```
+
+## Uso rápido con Makefile (opcional)
+Si has añadido el `Makefile`, puedes usar:
+```bash
+# instalar deps y migrar
+make setup
+
+# correr servidor
+make run
+
+# ejecutar tests
+make test
+
+# lint y format checks
+make lint
+```
+
+## CI
+Hay un workflow de GitHub Actions (`.github/workflows/test.yml`) que:
+- instala dependencias,
+- ejecuta black/isort/flake8,
+- ejecuta pytest.
+
+El badge arriba mostrará el estado del workflow.
+
+## Buenas prácticas / Notas
+- No subir `.env`, `.venv` ni backups. Añádelos a `.gitignore`.
+- Quitar `print()` de depuración; usar logging.
+- Crear ramas por feature y abrir Pull Requests.
+- Añadir capturas y badges para hacer el proyecto más presentable como portfolio.
+
+## Contribuir / Contacto
+Abrir issues o PRs. Autor: `Yisus95` (GitHub).
+
+## Licencia
+MIT (u otra que prefieras).
+
 
 ## 🚀 Capturas de pantalla
 
@@ -31,96 +129,3 @@ Permite a los usuarios registrarse, iniciar sesión y administrar sus tareas de 
 <img src="https://github.com/user-attachments/assets/33610cd3-4b61-413a-9b3f-84b6a1b91cc7" alt="Borrar tarea" width="800"><br>
 <em>Borrar tarea.</em>
 </p>
-
-
-## 🛠️ Tecnologías utilizadas
-
-- **Python 3.11**
-- **Django 5.x**
-- **SQLite** (base de datos por defecto)
-- HTML + CSS
-
----
-
-## ⚙️ Instalación y uso
-
-1.Clona el repositorio:
-   ```bash
-   git clone https://github.com/Yisus95/Lista-de-Tareas.git
-   cd Lista-de-Tareas/src/proyecto
-   ```
-
-2.Crea un entorno virtual:
-   ```bash
-   python -m venv venv
-   # Linux / macOS
-   source venv/bin/activate
-   # Windows (PowerShell)
-   .\venv\Scripts\Activate.ps1
-   # Windows (cmd)
-   venv\Scripts\activate
-   ```
-
-3.Instala dependencias:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3.Si no tienes requirements.txt, instala Django y crea el archivo:
-   ```bash
-   pip install "Django>=5.0,<6.0"
-   pip freeze > requirements.txt
-   ```
-
-4.Ejecuta migraciones:
-   ```bash
-   python manage.py migrate
-   ```
-
-5.Inicia el servidor de desarrollo:
-   ```bash
-   python manage.py runserver
-   ```
-
-6.Abre en el navegador:
-   ```bash
-   http://127.0.0.1:8000
-   ```
-
-7.- Para salir del entorno virtual:
-   ```bash
-   deactivate
-   ```
-   ---
-
-   **Notas rápidas**
-   - Asegúrate de ejecutar los comandos desde `src/proyecto` (donde está `manage.py`).  
-   - Usa `pip install -r requirements.txt` solo si `requirements.txt` existe y contiene las dependencias correctas.  
-   - Si usas Windows y tienes problemas con `Activate.ps1`, abre PowerShell como administrador o usa `cmd` y el comando `venv\Scripts\activate`.
-
-## 📋 Funcionalidades
-
-- Registro e inicio de sesión de usuarios
-- Crear nuevas tareas
-- Editar tareas existentes
-- Marcar tareas como completas
-- Eliminar tareas
-- Buscador de tareas
-
----
-
-## 🔮 Mejoras futuras
-
-- Añadir categorías o etiquetas a las tareas
-- Implementar API REST con Django REST Framework
-- Mejorar estilos con Bootstrap o Tailwind
-
----
-
-## 👨‍💻 Autor
-
-Proyecto creado por **Jesús (Yisus95)** como parte de su portfolio.  
-Puedes ver más en [mi perfil de GitHub](https://github.com/Yisus95).
-
-
-  
