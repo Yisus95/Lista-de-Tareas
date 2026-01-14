@@ -1,0 +1,11 @@
+# Entorno y secretos
+.env
+.venv/
+venv/
+*.sqlite3
+__pycache__/
+*.pyc
+*.log
+node_modules/
+*.zip
+*.bak
