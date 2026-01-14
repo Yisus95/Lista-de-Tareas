@@ -1,0 +1,55 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lista de Pendientes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'base/css/main.css' %}" />
+  </head>
+  <body>
+    <!-- Mensaje flotante -->
+    {% if messages %} {% for message in messages %} {% if forloop.first %}
+    <div id="flash-message" class="flash-message {{ message.tags }}">{{ message }}</div>
+    {% endif %} {% endfor %} {% endif %}
+
+    <div class="container">{% block content %} {% endblock %}</div>
+
+    <!-- Auto-ocultar el mensaje tras 12s -->
+    <script>
+      (function () {
+        var msg = document.getElementById('flash-message');
+        if (!msg) return;
+        // Tiempo visible (ms)
+        var VISIBLE_MS = 12000; // ajusta a 10000–15000 como prefieras
+
+        setTimeout(function () {
+          // Aplica animación de salida
+          msg.classList.add('hide');
+          // Elimina el nodo al terminar la transición
+          msg.addEventListener(
+            'transitionend',
+            function () {
+              if (msg && msg.parentNode) {
+                msg.parentNode.removeChild(msg);
+              }
+            },
+            { once: true }
+          );
+        }, VISIBLE_MS);
+      })();
+    </script>
+  </body>
+</html>

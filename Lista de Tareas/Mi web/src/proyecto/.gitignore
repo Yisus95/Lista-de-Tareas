@@ -1,9 +1,11 @@
-# Python
+# Entorno y secretos
+.env
+.venv/
+venv/
+*.sqlite3
 __pycache__/
 *.pyc
-
-# Django
-db.sqlite3
-
-# Entorno virtual
-web/
+*.log
+node_modules/
+*.zip
+*.bak
