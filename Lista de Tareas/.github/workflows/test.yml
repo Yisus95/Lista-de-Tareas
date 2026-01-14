@@ -39,17 +39,17 @@ jobs:
       - name: Run black check (only project files)
         run: |
           black --version
-          # Ajusta la ruta 'src' si tu código está en otra carpeta
-          black --check src || { echo "Run 'black src' locally to fix formatting"; exit 1; }
+          # Atención: usamos la ruta relativa al repo y entre comillas por los espacios
+          black --check "Mi web/src/proyecto" || { echo "Ejecuta 'black \"Mi web/src/proyecto\"' localmente para arreglar el formateo"; exit 1; }
 
       - name: Run isort check (only project files)
         run: |
           isort --version
-          isort --check-only src || { echo "Run 'isort src' locally to fix imports"; exit 1; }
+          isort --check-only "Mi web/src/proyecto" || { echo "Ejecuta 'isort \"Mi web/src/proyecto\"' localmente para ordenar imports"; exit 1; }
 
       - name: Run flake8 (only project files)
         run: |
-          flake8 src || { echo "Run 'flake8 src' locally to see issues"; exit 1; }
+          flake8 "Mi web/src/proyecto" || { echo "Ejecuta 'flake8 \"Mi web/src/proyecto\"' localmente para ver errores"; exit 1; }
 
       - name: Run tests
         env:
