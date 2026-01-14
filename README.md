@@ -5,13 +5,32 @@
 Pequeña aplicación Django para gestionar tareas (crear, editar, listar, marcar completadas y eliminar). Incluye notificaciones tipo "flash" para feedback al usuario — ahora también muestra un flash al eliminar una tarea. Este repositorio incluye tests (pytest), formateo (black) y linters (flake8/isort).
 
 ## Capturas
-Antes / Después (coloca las imágenes en `assets/screenshots/`):
-- Antes: `assets/screenshots/before.png`  
-  ![before](assets/screenshots/before.png)
-- Después (flash al eliminar): `assets/screenshots/after.png`  
-  ![after](assets/screenshots/after.png)
 
-> Si no ves las imágenes, súbelas a `assets/screenshots/` y asegúrate de que están en el repo.
+<p align="center">
+<img src="https://github.com/user-attachments/assets/65b8c684-2d31-424b-8790-4acf11c42f2e" alt="Acceso" width="800"><br>
+<em>Acceso o Registro de nuevo usuario.</em>
+</p>
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/edde42f8-be92-42c0-9bbc-c09e87354b49" alt="Registro" width="800"><br>
+<em>Registro de nuevos usuarios.</em>
+</p>
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/f992a670-c502-4df1-89eb-4eb119baffdf" alt="Lista de Tareas" width="800"><br>
+<em>Lista con buscador, creación rápida y estados de tarea.</em>
+</p>
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/4c2bd23a-a1be-45a9-b918-51ea63bc3595" alt="Crear nueva tarea" width="800"><br>
+<em>Crear nueva tarea.</em>
+</p>
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/33610cd3-4b61-413a-9b3f-84b6a1b91cc7" alt="Borrar tarea" width="800"><br>
+<em>Borrar tarea.</em>
+</p>
+
 
 ## Características
 - CRUD de tareas (crear, listar, editar, borrar).
@@ -101,31 +120,3 @@ Abrir issues o PRs. Autor: `Yisus95` (GitHub).
 
 ## Licencia
 MIT (u otra que prefieras).
-
-
-## 🚀 Capturas de pantalla
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/65b8c684-2d31-424b-8790-4acf11c42f2e" alt="Acceso" width="800"><br>
-<em>Acceso o Registro de nuevo usuario.</em>
-</p>
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/edde42f8-be92-42c0-9bbc-c09e87354b49" alt="Registro" width="800"><br>
-<em>Registro de nuevos usuarios.</em>
-</p>
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/f992a670-c502-4df1-89eb-4eb119baffdf" alt="Lista de Tareas" width="800"><br>
-<em>Lista con buscador, creación rápida y estados de tarea.</em>
-</p>
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/4c2bd23a-a1be-45a9-b918-51ea63bc3595" alt="Crear nueva tarea" width="800"><br>
-<em>Crear nueva tarea.</em>
-</p>
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/33610cd3-4b61-413a-9b3f-84b6a1b91cc7" alt="Borrar tarea" width="800"><br>
-<em>Borrar tarea.</em>
-</p>
