@@ -1,15 +1,8 @@
 ﻿from django.contrib.auth.views import LogoutView
 from django.urls import path
 
-from .views import (
-    CrearTarea,
-    DetalleTarea,
-    EditarTarea,
-    EliminarTarea,
-    ListaPendientes,
-    Logeo,
-    PaginaRegistro,
-)
+from .views import (CrearTarea, DetalleTarea, EditarTarea, EliminarTarea,
+                    ListaPendientes, Logeo, PaginaRegistro)
 
 urlpatterns = [
     path("", ListaPendientes.as_view(), name="tareas"),

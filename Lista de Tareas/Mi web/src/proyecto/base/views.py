@@ -1,14 +1,16 @@
 ﻿from urllib import request, response
+
 from django.contrib import messages
-from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, DeleteView, FormView, UpdateView
+from django.views.generic.edit import (CreateView, DeleteView, FormView,
+                                       UpdateView)
 from django.views.generic.list import ListView
 
 from .models import Tarea
@@ -110,7 +112,9 @@ class EliminarTarea(LoginRequiredMixin, DeleteView):
     def post(self, request, *args, **kwargs):
         # use post() para asegurarnos de interceptar el submit del form
         obj = self.get_object()
-        print(f"DEBUG: EliminarTarea.POST called for pk={obj.pk} titulo='{obj.titulo}' user={request.user}")
+        print(
+            f"DEBUG: EliminarTarea.POST called for pk={obj.pk} titulo='{obj.titulo}' user={request.user}"
+        )
         # ejecutar la eliminación y captar la respuesta
         response = super().post(request, *args, **kwargs)
         # añadir mensaje justo después
