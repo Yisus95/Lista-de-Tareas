@@ -22,13 +22,23 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install dependencies
+      - name: Install dependencies (from src/proyecto)
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f src/proyecto/requirements.txt ]; then pip install -r src/proyecto/requirements.txt; else pip install Django; fi
           pip install pytest pytest-django
 
+      - name: Verify Django installed
+        run: |
+          python -c "import django; print('Django', django.get_version())"
+
+      - name: Run migrations
+        working-directory: src/proyecto
+        run: |
+          python manage.py migrate --noinput
+
       - name: Run tests
+        working-directory: src/proyecto
         env:
           DJANGO_SETTINGS_MODULE: proyecto.settings
         run: |
