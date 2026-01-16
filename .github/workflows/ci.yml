@@ -1,4 +1,3 @@
-# Improved CI workflow for Python / Django projects
 name: CI - minimal
 
 on:
@@ -51,7 +50,6 @@ jobs:
           pip freeze
 
       - name: Optional: Debug basic environment
-        if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
         run: |
           echo "=== Python info ==="
           python --version
