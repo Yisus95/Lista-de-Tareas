@@ -68,5 +68,6 @@ jobs:
       - name: Run tests
         env:
           DJANGO_SETTINGS_MODULE: proyecto.settings
+          PYTHONPATH: src/proyecto
         run: |
           pytest -q
