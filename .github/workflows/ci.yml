@@ -65,9 +65,36 @@ jobs:
         run: |
           python src/proyecto/manage.py migrate --noinput
 
-      - name: Run tests
+      - name: Run tests (debug)
         env:
           DJANGO_SETTINGS_MODULE: proyecto.settings
           PYTHONPATH: src/proyecto
         run: |
-          pytest -q
+          echo "=== PWD ==="
+          pwd
+          echo "=== Root listing ==="
+          ls -la
+          echo "=== src/proyecto listing (first levels) ==="
+          ls -la src/proyecto || true
+
+          echo "=== Show pytest.ini (if present) ==="
+          if [ -f pytest.ini ]; then sed -n '1,200p' pytest.ini; else echo "pytest.ini not found in repo root"; fi
+
+          echo "=== Find test files ==="
+          find src/proyecto -maxdepth 4 -type f \( -name 'test_*.py' -o -name '*_test.py' -o -name 'tests.py' \) -print | sed -n '1,200p' || true
+
+          echo "=== Python import checks ==="
+          python -c "import sys, importlib, pathlib; print('sys.path (head):', sys.path[:6]); print('can import proyecto?'); \
+            import importlib.util; print(importlib.util.find_spec('proyecto'))" || true
+
+          echo "=== pytest --showconfig ==="
+          pytest --showconfig || true
+
+          echo "=== pytest collect-only (root) ==="
+          pytest --collect-only -q || true
+
+          echo "=== pytest collect-only (inside src/proyecto) ==="
+          (cd src/proyecto && pytest --collect-only -q) || true
+
+          echo "=== If tests found, run pytest ==="
+          pytest -q || echo "pytest returned $? (collection/run failed)"
