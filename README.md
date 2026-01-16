@@ -21,7 +21,7 @@ Estado
 </p>
 
 <p align="center">
-<img src="docs/screenshots/Lista-Tarea.png" alt="Lista de Tareas" width="800"><br>
+<img src="docs/screenshots/Lista-Tareas.png" alt="Lista de Tareas" width="800"><br>
 <em>Lista con buscador, creación rápida y estados de tarea.</em>
 </p>
 
