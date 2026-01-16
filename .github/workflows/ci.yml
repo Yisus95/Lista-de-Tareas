@@ -1,8 +1,9 @@
+# CI minimal y robusto para Django
 name: CI - minimal
 
 on:
   push:
-    branches: [ main, "**" ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -32,43 +33,35 @@ jobs:
       - name: Install dependencies (from repo)
         run: |
           python -m pip install --upgrade pip
-          # install production deps if present, fallback to Django if not
           if [ -f requirements.txt ]; then
             pip install -r requirements.txt || (echo "pip install -r requirements.txt failed" && pip install "Django>=5.2,<6")
           else
             echo "requirements.txt not found in repo root"
             pip install "Django>=5.2,<6"
           fi
-          # install dev/test deps if present
           if [ -f requirements-dev.txt ]; then
             pip install -r requirements-dev.txt
           else
-            # ensure pytest and pytest-django are available for test runs
             pip install pytest pytest-django
           fi
-          echo "=== pip freeze ==="
           pip freeze
 
-      - name: Optional: Debug basic environment
+      - name: Debug basic environment
         run: |
           echo "=== Python info ==="
           python --version
-          python -c "import sys; print('sys.path (head):', sys.path[:6])"
+          python -c 'import sys; print("sys.path (head):", sys.path[:6])'
           echo "=== Show pytest config (root) ==="
           if [ -f pytest.ini ]; then sed -n '1,200p' pytest.ini; else echo "pytest.ini not found in repo root"; fi
 
       - name: Verify Django installed
-        run: |
-          python -c "import django; print('Django', django.get_version())"
+        run: python -c 'import django; print("Django", django.get_version())'
 
       - name: Run migrations
-        run: |
-          python src/proyecto/manage.py migrate --noinput
+        run: python src/proyecto/manage.py migrate --noinput
 
       - name: Run tests
         env:
           DJANGO_SETTINGS_MODULE: proyecto.settings
           PYTHONPATH: src/proyecto
-        run: |
-          echo "Running pytest on src/proyecto..."
-          pytest src/proyecto -q
+        run: pytest src/proyecto -q
