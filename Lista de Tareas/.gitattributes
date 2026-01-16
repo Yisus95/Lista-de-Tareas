@@ -1,8 +1,0 @@
-﻿# Normalizar finales de línea por defecto
-* text=auto
-
-# Forzar LF en archivos de código y configuración
-*.py    text eol=lf
-*.ini   text eol=lf
-*.cfg   text eol=lf
-pytest.ini text eol=lf

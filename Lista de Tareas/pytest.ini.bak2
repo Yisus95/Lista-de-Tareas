@@ -1,9 +1,0 @@
-[pytest]
-# Django settings
-DJANGO_SETTINGS_MODULE = proyecto.settings
-
-# Qué archivos/patrones contienen tests en tu proyecto
-python_files = tests.py test_*.py *_tests.py
-
-# Evitar que pytest recorra directorios no relevantes (incluye .venv)
-norecursedirs = .git .venv venv env build dist .tox node_modules
