@@ -24,8 +24,17 @@ jobs:
       - name: Install dependencies (from repo root)
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          # instalar desde requirements.txt si existe
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt || (echo "pip install -r requirements.txt failed" && pip install "Django>=5.2,<6")
+          else
+            echo "requirements.txt not found in repo root"
+            pip install "Django>=5.2,<6"
+          fi
+          # aseguramos pytest y pytest-django
           pip install pytest pytest-django
+          echo "=== pip freeze ==="
+          pip freeze
 
       - name: Debug pytest discovery
         run: |
