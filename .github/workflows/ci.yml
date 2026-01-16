@@ -1,4 +1,4 @@
-﻿name: CI - minimal
+name: CI - minimal
 
 on:
   push:
@@ -21,25 +21,42 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies (from project)
-        working-directory: src/proyecto
+      - name: Install dependencies (from repo root)
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install pytest pytest-django
 
+      - name: Debug pytest discovery
+        run: |
+          echo "=== Debug: working dir & listings ==="
+          pwd
+          echo "--- root listing ---"
+          ls -la
+          echo "--- src listing ---"
+          ls -la src || true
+          echo "--- src/proyecto listing ---"
+          ls -la src/proyecto || true
+          echo "=== Python info ==="
+          python --version
+          python -c "import sys, pathlib; print('cwd', pathlib.Path.cwd()); print('sys.path (first 5):', sys.path[:5])"
+          python -c "import pytest; print('pytest', pytest.__version__, 'from', pytest.__file__)" || true
+          echo "=== pytest config (from repo root) ==="
+          pytest --showconfig || true
+          echo "=== pytest collect-only (from root) ==="
+          pytest --collect-only -q || true
+          echo "=== pytest collect-only (from src/proyecto) ==="
+          (cd src/proyecto && pytest --collect-only -q) || true
+
       - name: Verify Django installed
-        working-directory: src/proyecto
         run: |
           python -c "import django; print('Django', django.get_version())"
 
       - name: Run migrations
-        working-directory: src/proyecto
         run: |
-          python manage.py migrate --noinput
+          python src/proyecto/manage.py migrate --noinput
 
       - name: Run tests
-        working-directory: src/proyecto
         env:
           DJANGO_SETTINGS_MODULE: proyecto.settings
         run: |
