@@ -1,0 +1,46 @@
+﻿name: CI - minimal
+
+on:
+  push:
+    branches: [ main, "**" ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies (from project)
+        working-directory: src/proyecto
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install pytest pytest-django
+
+      - name: Verify Django installed
+        working-directory: src/proyecto
+        run: |
+          python -c "import django; print('Django', django.get_version())"
+
+      - name: Run migrations
+        working-directory: src/proyecto
+        run: |
+          python manage.py migrate --noinput
+
+      - name: Run tests
+        working-directory: src/proyecto
+        env:
+          DJANGO_SETTINGS_MODULE: proyecto.settings
+        run: |
+          pytest -q
