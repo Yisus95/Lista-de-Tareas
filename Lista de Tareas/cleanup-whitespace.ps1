@@ -1,4 +1,4 @@
-Get-ChildItem -Path "Mi web/src/proyecto" -Recurse -Include *.py | ForEach-Object {
+Get-ChildItem -Path "src/proyecto" -Recurse -Include *.py | ForEach-Object {
   $path = $_.FullName
   $text = Get-Content -Raw -Encoding UTF8 $path
   # Separar en líneas

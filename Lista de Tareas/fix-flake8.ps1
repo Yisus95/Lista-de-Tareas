@@ -1,7 +1,7 @@
 # fix-flake8.ps1
 # Backup y arreglos automáticos (trailing blanks, eliminar imports concretos, espaciado en urls), luego run tools.
 
-$project = "Mi web/src/proyecto"
+$project = "src/proyecto"
 
 # Lista de ficheros a tocar (según flake8)
 $files = @(
