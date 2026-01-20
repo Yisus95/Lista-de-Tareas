@@ -2,9 +2,9 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView
-from django.views.generic import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.shortcuts import redirect
 from .models import Tarea
 from .forms import TareaForm
 
@@ -35,7 +35,10 @@ class CrearTarea(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.usuario = self.request.user
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        # Mensaje flash al crear
+        messages.success(self.request, "Tarea creada correctamente.")
+        return response
 
 class EditarTarea(LoginRequiredMixin, UpdateView):
     model = Tarea
@@ -43,10 +46,27 @@ class EditarTarea(LoginRequiredMixin, UpdateView):
     template_name = 'tareas/form.html'
     success_url = reverse_lazy('tareas')
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        # Mensaje flash al editar
+        messages.success(self.request, "Tarea actualizada correctamente.")
+        return response
+
 class EliminarTarea(LoginRequiredMixin, DeleteView):
     model = Tarea
     template_name = 'tareas/delete_confirm.html'
     success_url = reverse_lazy('tareas')
+
+    def post(self, request, *args, **kwargs):
+        # Se ejecuta al confirmar la eliminación (POST desde el formulario)
+        self.object = self.get_object()
+        # Mensaje flash limpio (sin debug)
+        messages.success(request, f"Tarea «{self.object.titulo}» eliminada correctamente.")
+        return super().post(request, *args, **kwargs)
+
+    # mantenemos delete como fallback (llamado por super().post())
+    def delete(self, request, *args, **kwargs):
+        return super().delete(request, *args, **kwargs)
 
 # --- CUENTAS ---
 class Logeo(LoginView):

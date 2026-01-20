@@ -1,0 +1,443 @@
+:root{
+  --bg: hsl(0, 29%, 72%);
+  --card: #be8c8c;
+  --accent: #7c2323;
+  --accent-strong: #5b1616;
+  --accent-bright: #ea4220;
+  --text: #331919;
+  --muted: #81413b;
+  --success-bg: #d4edda;
+  --error-bg: #f8d7da;
+  --info-bg: #cce5ff;
+  --warning-bg: #fff3cd;
+  --focus-ring: rgba(234, 66, 32, 0.18);
+  --radius: 6px;
+  --shadow: 2px 2px 13px -4px rgba(0,0,0,0.21);
+  --max-width: 550px;
+  --space-sm: 0.5rem;
+  --space: 1rem;
+  --font-sans: "Red Hat Display", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Color del centro del encabezado (usado para el flash) */
+  --header-center: rgb(160,44,29);
+}
+
+/* Reset / box sizing */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-top: 60px;
+  color: var(--text);
+  line-height: 1.4;
+  font-size: 16px;
+}
+
+/* Layout container */
+.container {
+  position: relative; /* necesario para posicionar el flash dentro del header */
+  max-width: var(--max-width);
+  margin: 1.25rem auto;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  border-radius: calc(var(--radius) + 2px);
+  overflow: hidden;
+}
+
+/* Header bar */
+.barra-superior {
+  position: relative; /* referencia para centrar flash en su área */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem; /* increased vertical padding for more breathing room */
+  color: antiquewhite;
+  background-image: linear-gradient(90deg, rgb(92,20,20) 0%, rgb(160,44,29) 43%, rgb(92,20,20) 100%);
+}
+
+.barra-superior > div {
+  padding: .15rem 0;
+}
+
+.barra-superior h1,
+.barra-superior a {
+  margin: 0;
+  font-weight: 700;
+  font-family: var(--font-sans);
+}
+
+.barra-superior a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  margin: 0 0 0.5rem 0;
+}
+
+/* Title styling adjustments */
+.barra-superior h1 {
+  margin: 0 0 0.6rem 0;   /* more space between title and subtitle */
+  font-size: 1.6rem;
+  letter-spacing: 0.6px;  /* spacing between letters */
+  line-height: 1.05;
+}
+
+/* Subtitle "Tienes X tarea..." */
+.barra-superior h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: normal;      /* ensure not italic */
+  letter-spacing: 0.35px;
+  color: rgba(255,255,255,0.95);
+}
+
+/* Highlight count (no italic, bolder) */
+.barra-superior .count {
+  font-style: normal;
+  font-weight: 800;
+  margin: 0 .25rem;
+  color: #fff;
+  letter-spacing: 0.2px;
+}
+
+a, p {
+  color: #832c2c;
+}
+
+/* Card body */
+.cuerpo-tarjeta {
+  padding: 1.25rem;
+}
+
+/* Form fields (consistent, full-width) */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.625rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  background: #fff;
+  color: #111;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: box-shadow 120ms ease, border-color 120ms ease, transform 120ms ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #570b0b;
+  opacity: 0.9;
+  font-size: 0.9375rem;
+}
+
+/* Accessible focus state */
+:focus {
+  outline: none;
+}
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  box-shadow: 0 0 0 4px var(--focus-ring);
+  border-color: var(--accent-strong);
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-top: 0.75rem;
+  margin-bottom: 0.375rem;
+  font-weight: 600;
+}
+
+/* Buttons (base) */
+.boton,
+button,
+input[type="submit"] {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: none;
+  font-family: inherit;
+  transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
+}
+
+.boton:hover,
+button:hover,
+input[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  background-color: var(--accent-strong);
+}
+
+/* Botón de cerrar sesión: estilo ligero + hover */
+.logout-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 0.25rem 0.5rem;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 15px;
+  border-radius: 6px;
+  transition: background-color 160ms ease, transform 120ms ease, box-shadow 120ms ease;
+}
+.logout-btn:hover,
+.logout-btn:focus {
+  background-color: rgba(255,255,255,0.06);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+/* Task list styles */
+.envoltorio-tarea {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem;
+  border-top: 1px solid #7c2323;
+  background: transparent;
+}
+
+.titulo-tarea {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.titulo-tarea a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+/* Icons */
+.icono-tarea-completa,
+.icono-tarea-incompleta {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  flex: 0 0 20px;
+}
+
+.icono-tarea-completa { background: rgb(105,162,105); }
+.icono-tarea-incompleta { background: rgb(231,222,222); }
+
+.enlace-eliminar {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 1.25rem;
+  line-height: 0;
+}
+
+/* Completed task styling */
+.completada .texto-tarea {
+  color: #ffffff;
+  text-decoration: line-through;
+}
+
+/* Floating add link / button (reduced size for better centering) */
+#enlace-agregar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;            /* reduced from 40px */
+  height: 34px;           /* reduced from 40px */
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.15rem;     /* slightly smaller */
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+#enlace-agregar:hover,
+#enlace-agregar:focus {
+  transform: scale(1.08) translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.14);
+  background-color: var(--accent-strong);
+}
+
+/* Layout for search + add so controls are aligned and centered */
+.seccion2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;         /* reduced gap */
+}
+
+/* Make the form area take available space and keep controls compact */
+.seccion2 form {
+  display: flex;
+  gap: 0.5rem;
+  flex-grow: 1;
+  align-items: center;
+}
+
+/* Input inside the search form: slightly smaller paddings for compact look */
+.seccion2 input[type="text"] {
+  flex-grow: 1;
+  padding: 0.5rem;           /* a bit smaller */
+  font-size: 0.95rem;
+}
+
+/* Target the search button only within the seccion2 to make it smaller */
+.seccion2 .boton {
+  padding: 0.45rem 0.7rem;   /* reduced vertical/horizontal padding */
+  font-size: 0.9rem;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+/* Keep vertical alignment consistent */
+.seccion2 input[type="text"],
+.seccion2 .boton,
+#enlace-agregar { align-self: center; }
+
+/* Messages (inline) */
+.messages {
+  list-style: none;
+  margin: 0 0 1rem 0;
+  padding: 0;
+}
+.messages li {
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.messages li.success { background: var(--success-bg); color: #155724; border: 1px solid #c3e6cb; }
+.messages li.error   { background: var(--error-bg);   color: #721c24; border: 1px solid #f5c6cb; }
+
+/* ---------- Flash messages (new styles) ---------- */
+/* Container positioned inside the header so the flash sits over the header */
+#flash-messages {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 0.5rem;
+  pointer-events: none; /* allow clicks through unless message enables them */
+  z-index: 9999;
+  width: auto;
+  max-width: calc(100% - 2rem);
+}
+
+/* Each message */
+.flash-message {
+  pointer-events: auto; /* enable interaction with the message itself */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--header-center);
+  color: #fff;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+  font-weight: 700;
+  transition: opacity 300ms ease, transform 300ms ease;
+  white-space: nowrap;
+}
+
+/* variant colors if needed */
+.flash-message.success { background: var(--header-center); color: #fff; }
+.flash-message.error   { background: var(--error-bg); color: #721c24; border-color: #f5c6cb; }
+.flash-message.info    { background: var(--info-bg); color: #004085; border-color: #b8daff; }
+.flash-message.warning { background: var(--warning-bg); color: #856404; border-color: #ffeeba; }
+
+/* Close button inside the flash */
+.flash-close {
+  background: rgba(0,0,0,0.12);
+  border: none;
+  color: #fff;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+/* Hidden state */
+.flash-message.hide {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
+
+/* Responsive tweaks for small screens */
+@media (max-width: 480px) {
+  #flash-messages {
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -45%);
+    width: calc(100% - 2rem);
+    justify-content: center;
+  }
+  .flash-message {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.6rem 0.8rem;
+    white-space: normal;
+  }
+}
+
+/* Floating legacy flash styles removed to avoid conflict */
+/* (old .flash-message fixed styles intentionally replaced) */
+
+/* Utility: visually hidden for accessibility */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  body { padding-top: 48px; }
+  .container { margin: 0 0.75rem; border-radius: 0.5rem; }
+  .cuerpo-tarjeta { padding: 1rem; }
+  .barra-superior { padding: 0.6rem 0.8rem; }
+  .seccion2 { flex-direction: column; gap: 0.5rem; align-items: stretch; }
+  .seccion2 form { width: 100%; }
+  #enlace-agregar { margin-left: auto; }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

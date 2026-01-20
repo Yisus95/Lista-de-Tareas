@@ -1,200 +1,76 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Lista de Pendientes</title>
+
+    <!-- Google Fonts (solo una vez) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    
-    <style>
 
-        body {
-            background-color: hsl(0, 29%, 72%);
-            font-family: "Red Hat Display", sans-serif;
-            padding-top: 60px;
-        }
-
-        .container{
-            max-width: 550px;
-            margin: auto;
-            background-color: #be8c8c;
-            -webkit-box-shadow: 2px 2px 13px -4px rgba(0,0,0,0.21);
-            font-family: "Red Hat Display", sans-serif;
-            box-shadow: 2px 2px 13px -4px rgba(0,0,0,0.21);
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6{
-            font-family: "Red Hat Display", sans-serif;
-        }
-        
-        a,
-        p {
-            color: #832c2c
-        }
-        .barra-superior {
-            display: flex;
-            justify-content: space-between;
-            font-family: "Red Hat Display", sans-serif;
-            color:antiquewhite;
-            align-items: center;
-            padding: 10px;
-            border-radius: 5px 5px 0 0;
-            background-image: linear-gradient(90deg, rgb(92, 20, 20) 0%, rgb(160, 44, 29) 43%, rgb(92, 20, 20) 100%);
-        }
-
-        .barra-superior a {
-            color: rgb(255, 255, 255);
-            font-family: "Red Hat Display", sans-serif;
-            text-decoration: none;
-            font-weight: bold;}
-
-        .envoltorio-tarea {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            background-color: #be8c8c;
-            border-top: 1px solid #7c2323;
-            font-family: 'Red Hat Display', sans-serif;
-        }
-        .titulo-tarea {
-            display: flex;
-        }
-        .titulo-tarea a {
-            text-decoration: none;
-            color: #331919;
-            margin-left: 10px;
-        }
-        .icono-tarea-completa {
-            height: 20px;
-            width: 20px;
-            background-color: rgb(105, 162,105);
-            border-radius: 50px;
-        }
-        .icono-tarea-incompleta {
-            height: 20px;
-            width: 20px;
-            background-color: rgb(218, 218, 218);
-            border-radius: 50px;
-        }
-        .enlace-eliminar {
-            color: #7c2323;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 22px;
-            line-height: 0;
-        
-        }
-
-        .completada .texto-tarea {
-            color: #999;
-            text-decoration: line-through;
-        }
-
-        
-        input::placeholder {
-            color: #570b0b;
-            font-size: 15px;
-            font-family: 'Red Hat Display', sans-serif;
-        }
-        #enlace-agregar {
-            color: #EA4220;
-            text-decoration: none;
-            font-size: 42px;
-            text-shadow: 1px 1px #81413B;
-        }
-
-        input[type=text],
-        input[type=password],
-        textarea {
-            border: 1px solid #EB796F;
-            border-radius: 5px;
-            padding:10px;
-            width:90%;
-            font-family: "Red Hat Display", sans-serif;
-        }
-
-        label {
-            padding-top: 10px !important;
-            display:block
-        }
-        
-        .boton {
-            border: 1px solid #7c2323;
-            background-color: #7c2323;
-            color: #ffffff;
-            padding:10px;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-family: "Red Hat Display", sans-serif;
-        }
-
-        .cuerpo-tarjeta {
-            padding: 20px;
-        }
-        .seccion2 {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-}
-
-        .seccion2 form {
-            display: flex;
-            gap: 10px;
-            flex-grow: 1;
-}
-
-        .seccion2 input[type="text"] {
-            flex-grow: 1;
-}
-
-        #enlace-agregar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #7c2323;
-            color: #fff;
-            font-size: 28px;
-            font-weight: bold;
-            text-decoration: none;
-            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-        #enlace-agregar:hover {
-            transform: scale(1.15);
-            box-shadow: 0 0 12px rgba(217, 76, 61, 0.6);
-}
-
-
-
-
-        </style>
+    <!-- Enlace al CSS estático -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
   <div class="container">
+
+    {# --- Mensajes flash accesibles y manejables --- #}
     {% if messages %}
-      <div class="cuerpo-tarjeta" aria-live="polite">
+      <div id="flash-messages" aria-live="polite" aria-atomic="true">
         {% for message in messages %}
-          <div class="mensaje {{ message.tags }}">{{ message }}</div>
+          <div class="flash-message {{ message.tags }}" role="status" tabindex="0" data-timeout="4000">
+            <span class="flash-content">{{ message }}</span>
+            <button type="button" class="flash-close" aria-label="Cerrar mensaje">&times;</button>
+          </div>
         {% endfor %}
       </div>
+
+      <noscript>
+        <!-- Fallback visible si JS está deshabilitado -->
+        <div style="background:#fff;color:#000;padding:8px;margin:10px;border:1px solid #000;">
+          {% for message in messages %}
+            <div>{{ message }} ({{ message.tags }})</div>
+          {% endfor %}
+        </div>
+      </noscript>
+
+      <script>
+        (function () {
+          if (typeof window === 'undefined') return;
+
+          function hideFlash(el) {
+            if (!el) return;
+            el.classList.add('hide');
+            el.addEventListener('transitionend', function () {
+              try { el.remove(); } catch (e) { /* ignore */ }
+            }, { once: true });
+          }
+
+          window.addEventListener('load', function () {
+            const container = document.getElementById('flash-messages');
+            if (!container) return;
+
+            const flashes = container.querySelectorAll('.flash-message');
+            flashes.forEach(function (el) {
+              el.setAttribute('tabindex', '0');
+              const t = parseInt(el.getAttribute('data-timeout'), 10) || 4000;
+              const timer = setTimeout(function () { hideFlash(el); }, t);
+              const btn = el.querySelector('.flash-close');
+              if (btn) {
+                btn.addEventListener('click', function () {
+                  clearTimeout(timer);
+                  hideFlash(el);
+                });
+              }
+            });
+          });
+        })();
+      </script>
     {% endif %}
+
     {% block content %}{% endblock %}
   </div>
 </body>
+</html>
