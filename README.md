@@ -24,7 +24,7 @@ Aplicación de lista de tareas desarrollada con Django (backend) y Python, enfoc
 - **CI:** GitHub Actions (`ci-minimal.yml`) ejecutando tests en cada push/PR
 - **Calidad de código:** uso de `.gitignore`, estructura de proyecto limpia, separación de responsabilidades
 
-  ## Qué demuestro con este proyecto
+## Qué demuestro con este proyecto
 
 - Capacidad para crear una aplicación web completa con Django (registro, login y CRUD por usuario).
 - Uso de Git de forma ordenada: ramas, commits claros y limpieza del historial.
