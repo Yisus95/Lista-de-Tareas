@@ -115,7 +115,7 @@ Si quieres ver más proyectos o contactar conmigo:
 
 ## Licencia
 Este proyecto está disponible bajo la licencia MIT.  
-Puedes ver los detalles completos en el archivo `LICENSE
+Puedes ver los detalles completos en el archivo [`LICENSE`](LICENSE).
 
 ## English (short summary)
 
