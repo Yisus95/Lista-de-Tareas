@@ -111,7 +111,7 @@ Este proyecto forma parte de mi portfolio y está pensado para mostrar:
 - Automatización con CI.
 - Capacidad para documentar y mantener un proyecto.
 
-Si quieres ver más proyectos o hablar conmigo, puedes contactarme por GitHub o por [tu email / LinkedIn si quieres ponerlo].
+Si quieres ver más proyectos o hablar conmigo, puedes contactarme por GitHub o por jesusareshdz95@gmail.com.
 
 ## Licencia
 - MIT (añade un `LICENSE` si quieres publicar con licencia).
