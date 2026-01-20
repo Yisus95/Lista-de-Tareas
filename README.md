@@ -2,7 +2,7 @@
 
 Aplicación de ejemplo para gestionar tareas. Proyecto preparado para demostración y pruebas, con CI mínimo configurado.
 
-[![CI](https://github.com/Yisus95/Lista-de-Tareas/actions/workflows/ci-minimal.yml/badge.svg)](https://github.com/Yisus95/Lista-de-Tareas/actions/workflows/ci-minimal.yml) ![pytest](https://img.shields.io/badge/tests-pytest-brightgreen) ![style: black](https://img.shields.io/badge/format-black-000000)
+[![CI](https://github.com/Yisus95/Lista-de-Tareas/actions/workflows/ci.yml/badge.svg)](https://github.com/Yisus95/Lista-de-Tareas/actions/workflows/ci.yml) ![pytest](https://img.shields.io/badge/tests-pytest-brightgreen) ![style: black](https://img.shields.io/badge/format-black-000000)
 
 Estado
 - CI: ✅ (workflow `ci-minimal.yml` ejecuta tests)
