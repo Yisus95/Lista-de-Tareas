@@ -60,12 +60,12 @@ Aplicación de lista de tareas desarrollada con Django (backend) y Python, enfoc
 </p>
 
 ## Instalación (local)
+
 1. Clonar
 ```bash
 git clone https://github.com/Yisus95/Lista-de-Tareas.git
 cd Lista-de-Tareas
 ```
-
 2. Crear entorno virtual e instalar dependencias
 ```bash
 python -m venv .venv
@@ -74,7 +74,7 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-3. Migraciones (si aplican, p. ej. Django)
+3. Aplicar migraciones y arrancar el servidor de desarrollo
 ```bash
 python manage.py migrate
 python manage.py runserver
@@ -89,18 +89,15 @@ pytest -q
 ```
 
 ## CI
-GitHub Actions ejecuta `ci-minimal.yml` en cada push/PR y corre los tests. El workflow está en `.github/workflows/ci-minimal.yml`.
+
+GitHub Actions ejecuta el workflow `ci-minimal.yml` en cada push/PR y corre los tests con Pytest.  
+El workflow está en `.github/workflows/ci-minimal.yml` y sirve como base para ampliar el pipeline (lint, coverage, etc.).
 
 ## Estructura del repo
 - `src/proyecto/` — código fuente principal  
 - `docs/screenshots/` — capturas usadas en este README  
 - `.github/workflows/ci-minimal.yml` — workflow CI  
 - `.gitignore` — archivos ignorados (venv, tmpenv, node_modules, db)
-
-## Qué he limpiado / recomendaciones
-- Ignorar y eliminar del índice carpetas de entornos y DB locales (añadir `.gitignore` si falta).  
-- Mantener `main` estable; usar ramas por funcionalidad y PRs con `Squash and merge` para un historial limpio.  
-- Si hay archivos grandes en el historial y quieres reducir el tamaño del repo, usar BFG/git-filter-repo (te puedo ayudar si lo deseas).
 
 ## Para reclutadores
 
@@ -111,11 +108,16 @@ Este proyecto forma parte de mi portfolio y está pensado para mostrar:
 - Automatización con CI.
 - Capacidad para documentar y mantener un proyecto.
 
-Si quieres ver más proyectos o hablar conmigo, puedes contactarme por GitHub o por jesusareshdz95@gmail.com.
+Si quieres ver más proyectos o contactar conmigo:
+
+- GitHub: https://github.com/Yisus95  
+- Email: jesusareshdz95@gmail.com
 
 ## Licencia
-- MIT (añade un `LICENSE` si quieres publicar con licencia).
+Este proyecto está disponible bajo la licencia MIT.  
+Puedes ver los detalles completos en el archivo `LICENSE
 
-## Contacto
-- Autor: Yisus95 — https://github.com/Yisus95
-```
+## English (short summary)
+
+This is a task management web application built with Django and Python.  
+The project focuses on user authentication, per-user task CRUD, and a basic CI pipeline using GitHub Actions and Pytest.
