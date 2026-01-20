@@ -14,9 +14,23 @@ Aplicación de lista de tareas desarrollada con Django (backend) y Python, enfoc
 ![Django](https://img.shields.io/badge/django-backend-green)
 ![License: MIT](https://img.shields.io/badge/license-MIT-yellow)
 
-Estado
-- CI: ✅ (workflow `ci-minimal.yml` ejecuta tests)
-- Presentable: ✅ (limpieza básica y .gitignore aplicado)
+## Tecnologías y buenas prácticas
+
+- **Backend:** Django (vistas, modelos, autenticación de usuarios)
+- **Base de datos:** SQLite (configurable)
+- **Frontend:** HTML + CSS + JavaScript clásico
+- **Autenticación:** registro, login y protección de vistas por usuario
+- **Testing:** Pytest (tests ejecutados en CI)
+- **CI:** GitHub Actions (`ci-minimal.yml`) ejecutando tests en cada push/PR
+- **Calidad de código:** uso de `.gitignore`, estructura de proyecto limpia, separación de responsabilidades
+
+  ## Qué demuestro con este proyecto
+
+- Capacidad para crear una aplicación web completa con Django (registro, login y CRUD por usuario).
+- Uso de Git de forma ordenada: ramas, commits claros y limpieza del historial.
+- Configuración de Integración Continua (CI) con GitHub Actions para asegurar que los tests se ejecutan en cada cambio.
+- Gestión correcta de entornos y secretos: `.gitignore` para excluir `.env`, `venv`, bases de datos locales, etc.
+- Documentación: instrucciones claras para clonar, instalar dependencias y ejecutar la aplicación y los tests.
 
 ## Capturas
 
@@ -44,24 +58,6 @@ Estado
 <img src="docs/screenshots/Confirm-Borrar.png" alt="Borrar tarea" width="800"><br>
 <em>Confirmación y mensaje flash al borrar tarea.</em>
 </p>
-
-## Tecnologías y buenas prácticas
-
-- **Backend:** Django (vistas, modelos, autenticación de usuarios)
-- **Base de datos:** SQLite (configurable)
-- **Frontend:** HTML + CSS + JavaScript clásico
-- **Autenticación:** registro, login y protección de vistas por usuario
-- **Testing:** Pytest (tests ejecutados en CI)
-- **CI:** GitHub Actions (`ci-minimal.yml`) ejecutando tests en cada push/PR
-- **Calidad de código:** uso de `.gitignore`, estructura de proyecto limpia, separación de responsabilidades
-
-  ## Qué demuestro con este proyecto
-
-- Capacidad para crear una aplicación web completa con Django (registro, login y CRUD por usuario).
-- Uso de Git de forma ordenada: ramas, commits claros y limpieza del historial.
-- Configuración de Integración Continua (CI) con GitHub Actions para asegurar que los tests se ejecutan en cada cambio.
-- Gestión correcta de entornos y secretos: `.gitignore` para excluir `.env`, `venv`, bases de datos locales, etc.
-- Documentación: instrucciones claras para clonar, instalar dependencias y ejecutar la aplicación y los tests.
 
 ## Instalación (local)
 1. Clonar
